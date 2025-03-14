@@ -7,7 +7,7 @@ import 'package:note_sphere/pages/todo_page.dart';
 class AppRouter {
   static final router = GoRouter(
     navigatorKey: GlobalKey<NavigatorState>(),
-    debugLogDiagnostics: true,
+    debugLogDiagnostics: false,
     initialLocation: '/',
     routes: [
       // Home Page route

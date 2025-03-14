@@ -31,7 +31,9 @@ class _HomePageState extends State<HomePage> {
               completedTasks: 5,
               totalTasks: 5,
             ),
-            SizedBox(height: AppConstants.kDefaultPadding),
+            SizedBox(
+              height: AppConstants.kDefaultPadding,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:note_sphere/utils/colors.dart';
+import 'package:note_sphere/utils/constants.dart';
 import 'package:note_sphere/utils/router.dart';
+import 'package:note_sphere/utils/text_styles.dart';
 
 class NotesPage extends StatefulWidget {
   const NotesPage({super.key});
@@ -40,6 +42,18 @@ class _NotesPageState extends State<NotesPage> {
           color: AppColors.kWhiteColor,
           size: 30,
         ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(
+          AppConstants.kDefaultPadding,
+        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const Text(
+            'Notes',
+            style: AppTextStyles.appTitle,
+          ),
+          const SizedBox(height: 30),
+        ]),
       ),
     );
   }
