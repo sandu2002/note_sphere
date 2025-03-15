@@ -33,7 +33,6 @@ class NoteServices {
   // Create the database reference for notes
   final _myBox = Hive.box("notes");
 
-
   //check weather the user is new user
   Future<bool> isNewUser() async {
     return _myBox.isEmpty;
