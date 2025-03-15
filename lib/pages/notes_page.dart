@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:note_sphere/models/note_model.dart';
+import 'package:note_sphere/services/note_services.dart';
 import 'package:note_sphere/utils/colors.dart';
 import 'package:note_sphere/utils/constants.dart';
 import 'package:note_sphere/utils/router.dart';
@@ -12,6 +14,40 @@ class NotesPage extends StatefulWidget {
 }
 
 class _NotesPageState extends State<NotesPage> {
+  final NoteServices noteServices = NoteServices();
+  List<Note> allNotes = [];
+  Map<String, List<Note>> notesWithCategory = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _checkIfUserIsNew();
+  }
+
+  // Check if the new user
+  void _checkIfUserIsNew() async {
+    final bool isNewUser = await noteServices.isNewUser();
+    if (isNewUser) {
+      // If the user is new, create the initial notes
+      await noteServices.createInitialNotes();
+    }
+    // Load the notes
+    _loadNotes();
+  }
+
+  Future<void> _loadNotes() async {
+    final List<Note> loadedNotes = await noteServices.loadNotes();
+
+    final Map<String, List<Note>> notesCategoryies =
+        noteServices.getNotesByCategoryMap(loadedNotes);
+
+    setState(() {
+      allNotes = loadedNotes;
+      notesWithCategory = notesCategoryies;
+      print(notesWithCategory);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
